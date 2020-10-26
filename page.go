@@ -4,7 +4,7 @@ import (
 	"errors"
 	"syscall/js"
 
-	"github.com/zeptotenshi/ned3/goweb/component"
+	"github.com/zeptotenshi/goweb/component"
 )
 
 type WebPage struct {
