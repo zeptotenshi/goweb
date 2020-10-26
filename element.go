@@ -3,8 +3,6 @@ package goweb
 import (
 	"errors"
 	"syscall/js"
-
-	"github.com/zeptotenshi/goweb/component"
 )
 
 type Element struct {
@@ -12,7 +10,7 @@ type Element struct {
 	tag string
 
 	el         js.Value
-	components map[string]*component.Component
+	components map[string]*Component
 
 	wp *WebPage
 }
@@ -26,10 +24,10 @@ func (e *Element) SetAttribute(_compName string, vals map[string]interface{}) {
 		e.el.Call("setAttribute", _compName, js.ValueOf(vals))
 	}
 
-	e.components[_compName] = component.CreateComponentFromStringInterfaceMap(vals)
+	e.components[_compName] = CreateComponentFromStringInterfaceMap(vals)
 }
 
-func (e *Element) SetAttributes(_comps []component.Component) error {
+func (e *Element) SetAttributes(_comps []Component) error {
 	for _, v := range _comps {
 		m, err := v.Mapped()
 		if err != nil {

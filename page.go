@@ -3,8 +3,6 @@ package goweb
 import (
 	"errors"
 	"syscall/js"
-
-	"github.com/zeptotenshi/goweb/component"
 )
 
 type WebPage struct {
@@ -22,7 +20,7 @@ func NewWebPage() *WebPage {
 		title:    doc.Get("title").String(),
 		document: doc,
 		console:  js.Global().Get("console"),
-		version:  "0.0.1", // temp
+		version:  "0.0.1",
 	}
 }
 
@@ -38,7 +36,7 @@ func (wp *WebPage) CreateElementWithTag(_tag string) *Element {
 		id:         "",
 		tag:        _tag,
 		el:         e,
-		components: map[string]*component.Component{},
+		components: map[string]*Component{},
 		wp:         wp,
 	}
 }
@@ -46,7 +44,7 @@ func (wp *WebPage) CreateElementWithTag(_tag string) *Element {
 func (wp *WebPage) CreateElementFromValue(_v js.Value) *Element {
 	e := &Element{
 		el:         _v,
-		components: map[string]*component.Component{},
+		components: map[string]*Component{},
 		wp:         wp,
 	}
 
@@ -96,7 +94,7 @@ func (wp *WebPage) GetElementByTag(_tag string) (*Element, error) {
 	el := &Element{
 		tag:        _tag,
 		el:         v,
-		components: map[string]*component.Component{},
+		components: map[string]*Component{},
 		wp:         wp,
 	}
 
