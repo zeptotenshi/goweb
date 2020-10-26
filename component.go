@@ -19,6 +19,10 @@ type Component struct {
 	Vals map[string]Attribute `json:"comp-values"`
 }
 
+func (c *Component) Length() int {
+	return c.Vals.Length
+}
+
 func (c *Component) Mapped() (map[string]interface{}, error) {
 	x := map[string]interface{}{}
 
