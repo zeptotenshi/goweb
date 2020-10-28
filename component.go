@@ -20,7 +20,7 @@ type Component struct {
 }
 
 func (c *Component) Length() int {
-	return c.Vals.Length
+	return len(c.Vals)
 }
 
 func (c *Component) Mapped() (map[string]interface{}, error) {
