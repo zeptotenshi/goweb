@@ -19,6 +19,10 @@ type Component struct {
 	Vals map[string]Attribute `json:"comp-values"`
 }
 
+func (c *Component) Name() string {
+	return c.Name
+}
+
 func (c *Component) Length() int {
 	return len(c.Vals)
 }
@@ -50,7 +54,7 @@ func (c *Component) Mapped() (map[string]interface{}, error) {
 	return x, nil
 }
 
-func (c Component) String() string {
+func (c *Component) String() string {
 	s := "name: " + c.Name
 
 	for i, v := range c.Vals {
