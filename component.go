@@ -19,7 +19,7 @@ type Component struct {
 	Vals map[string]Attribute `json:"comp-values"`
 }
 
-func (c *Component) Name() string {
+func (c *Component) Identifier() string {
 	return c.Name
 }
 
