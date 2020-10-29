@@ -40,16 +40,30 @@ func (e *Element) SetAttributes(_comps []Component) error {
 	return nil
 }
 
-func (e *Element) GetProperty(_name string) (js.Value, error) {
-	a := e.el.Get(_name)
-	if a.IsUndefined() {
-		return js.ValueOf(nil), errors.New(_name + " property undefined")
-	}
-	if a.IsNull() {
-		return js.ValueOf(nil), errors.New(_name + " property null")
+func (e *Element) GetProperty(_names ...string) (js.Value, error) {
+	v := js.ValueOf(nil)
+
+	for i, n := range _names {
+		if i == 0 {
+			v = e.el.Get(n)
+			if v.IsUndefined() {
+				return js.ValueOf(nil), errors.New(n + " property undefined")
+			}
+			if v.IsNull() {
+				return js.ValueOf(nil), errors.New(n + " property null")
+			}
+		} else {
+			v = v.Get(n)
+			if v.IsUndefined() {
+				return js.ValueOf(nil), errors.New(n + " property undefined")
+			}
+			if v.IsNull() {
+				return js.ValueOf(nil), errors.New(n + " property null")
+			}
+		}
 	}
 
-	return a, nil
+	return v, nil
 }
 
 func (e *Element) GetAttribute(_name string) (js.Value, error) {
