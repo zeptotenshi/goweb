@@ -27,7 +27,7 @@ func (e *Element) SetAttribute(_compName string, vals map[string]interface{}) {
 	e.components[_compName] = CreateComponentFromStringInterfaceMap(vals)
 }
 
-func (e *Element) Set(_propName string, _val js.Value) error {
+func (e *Element) SetValueProperty(_propName string, _val js.Value) error {
 	if e.el.IsUndefined() {
 		return errors.New("element js.Value undefined")
 	} else if e.el.IsNull() {
@@ -35,6 +35,18 @@ func (e *Element) Set(_propName string, _val js.Value) error {
 	}
 
 	e.el.Set(_propName, _val)
+
+	return nil
+}
+
+func (e *Element) SetFuncProperty(_propName string, _func js.Func) error {
+	if e.el.IsUndefined() {
+		return errors.New("element js.Value undefined")
+	} else if e.el.IsNull() {
+		return errors.New("element js.Value null")
+	}
+
+	e.el.Set(_propName, _func)
 
 	return nil
 }
