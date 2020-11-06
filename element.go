@@ -115,29 +115,6 @@ func (e *Element) AddEventListener(_eventName string, _cb js.Func) error {
 	return nil
 }
 
-// func (e *Element) GetComponent(_attName string) (Component, error) {
-// 	if v, ok := e.components[_attName]; ok {
-// 		return *v, nil
-// 	}
-
-// 	var bytes []byte
-// 	var att map[string]interface{}
-
-// 	js.CopyBytesToGo(&bytes, e.El.Call("getAttribute", _attName))
-// 	err = json.Unmarshal(bytes, &att)
-// 	if err != nil {
-// 		return nil, errors.New("'" + _attName + "' attribute unmarshal error: " + err.Error())
-// 	}
-
-// 	c, err := mapToComponent(att)
-// 	if err != nil {
-// 		return nil, errors.New("error converting attribute '" + _attName + "' map to component: " + err.Error())
-// 	}
-
-// 	c.Name = _attName
-// 	return *c, nil
-// }
-
 func (e *Element) AppendChild(_el Element) {
 
 }

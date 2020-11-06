@@ -82,6 +82,10 @@ func (wp *WebPage) GetElementByID(_id string) (*Element, error) {
 	}, nil
 }
 
+func (wp *WebPage) SetCookie(_name, _val string) {
+	wp.document.Set("cookie", _name+"="+_val)
+}
+
 // GetElementByTag returns the first element in the document with the given tag (e.g. <div>, <a-entity>, etc.)
 func (wp *WebPage) GetElementByTag(_tag string) (*Element, error) {
 	v := wp.document.Call("querySelector", _tag)
